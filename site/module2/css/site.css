@@ -26,6 +26,16 @@ h2 {
   margin-left: .6em;
 }
 
+a {
+  text-decoration: none;
+  color: #000000;
+  cursor: ns-resize;
+}
+
+a:hover p, a:active p {
+  overflow-y: scroll;
+}
+
 span.section-title {
   font-size: 1.25em;
   font-weight: bold;
