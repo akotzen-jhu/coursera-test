@@ -17,6 +17,15 @@ h1 {
   margin-bottom: 10px;
 }
 
+h2 { 
+  display: none; 
+  font-family: "Times New Roman", Georgia, Serif;
+  text-align: left;
+  font-size: 1.5em;
+  margin-top: 1em;
+  margin-left: .6em;
+}
+
 span.section-title {
   font-size: 1.25em;
   font-weight: bold;
@@ -31,6 +40,7 @@ p {
   border: 1px solid #000000;
   overflow: hidden;
   padding: 2em 1em 1em 1em;
+  line-height: 1.45em;
 }
 
 .row {
@@ -58,17 +68,11 @@ p {
   background-color: #FADBD8; /* pink */
   color: #000000;
 }
-#first .section {
-
-}
 
 /* Beef */
 #second .section-title {
   background-color: #CB4335; /* salmon */
   color: #ffffff;
-}
-#second .section {
-
 }
 
 /* Sushi */
@@ -76,13 +80,6 @@ p {
   background-color: #F9E79F; /* yellow */
   color: #000000;
 }
-#third .section {
-
-}
-
-
-
-
 
 /********** Desktop view **********/
 @media (min-width: 992px) {
@@ -98,8 +95,6 @@ p {
   .col-lg-10 { width: 83.33%; }
   .col-lg-11 { width: 91.66%; }
   .col-lg-12 { width: 100%; }
-
-  
 }
 
 /********** Tablet view **********/
@@ -137,5 +132,6 @@ p {
   .col-sm-11 { width: 91.66%; }
   .col-sm-12 { width: 100%; }
 
-
+  h1 { display: none; }
+  h2 { display: block; } 
 }
