@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: Helvetica;
+  font-family: Helvetica, Arial, sans-serif;
   padding: .5em;
 }
 
@@ -17,8 +17,9 @@ h1 {
   margin-bottom: 10px;
 }
 
-span {
+span.section-title {
   font-size: 1.25em;
+  font-weight: bold;
 }
 
 p {
@@ -26,7 +27,7 @@ p {
   margin: auto;
   width: 95%;
   height: 95%;
-  background-color: #C0C0C0; /* silver */
+  background-color: #cccccc; /* gray */
   border: 1px solid #000000;
   overflow: hidden;
   padding: 2em 1em 1em 1em;
