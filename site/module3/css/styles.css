@@ -1,15 +1,26 @@
 
+h1 {  }
+
+h3 { padding-top: .5em; }
+
 h3 > a,
 h3 > a:visited,
 h3 > a:hover,
 h3 > a:active { color: #000000; text-decoration: none; }
 
-#main-content h1 {text-align: center;}
+#header-nav-container {width: 100%;}
 
-#main-content h3 { text-align: center; }
+#main-content {width: 100%;}
 
-.menu-content-wrapper { background: #ccc; }
+.navbar-brand { padding: 0; }
+
+.menu-content-wrapper { background: #ccc;  }
 
 .menu-section { border: 1px dotted #ccc; }
-.menu-section p {  }
+
+.menu-section p { padding: 0 1em 1em 1em; }
+
+#standard-heading { margin-left: .5em; margin-top: .5em; }
+
+#mobile-heading { margin-left: .5em; margin-top: .2em; }
 
