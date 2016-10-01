@@ -1,5 +1,5 @@
 
-h1 {  }
+h1 { font-size: 1.8em; color: #000000; margin-left: .5em; margin-top: .3em; }
 
 h3 { padding-top: .5em; }
 
@@ -19,8 +19,3 @@ h3 > a:active { color: #000000; text-decoration: none; }
 .menu-section { border: 1px dotted #ccc; }
 
 .menu-section p { padding: 0 1em 1em 1em; }
-
-#standard-heading { margin-left: .5em; margin-top: .5em; }
-
-#mobile-heading { margin-left: .5em; margin-top: .2em; }
-
