@@ -3,21 +3,36 @@ p { color: #000000; }
 
 p > a { font-weight: bold; }
 
-h1 { font-size: 1.8em; color: #000000; margin-left: .5em; margin-top: .3em; }
+h1 { font-size: 1.8em; color: #000000; margin-left: 1em; margin-top: .3em; }
 
 h3 { padding-top: .5em; }
 
+h2 > a,
+h2 > a:visited,
+h2 > a:hover,
+h2 > a:active,
 h3 > a,
 h3 > a:visited,
 h3 > a:hover,
 h3 > a:active { color: #000000; text-decoration: none; }
 
+ul.navbar-nav {margin: 0; }
+
+ul.navbar-nav li { }
+
+#header-nav-container {padding-right: 0; padding-left: 0;}
+
+.navbar-header {padding-right: 1em;}
+
 .navbar {border-color: #333333; background-color: #bbbbbb; }
-.navbar-default .navbar-toggle { border-color: #333333; }
-.navbar-default .navbar-collapse { border-color: #333333; }
+.navbar-default .navbar-toggle { border-color: #333333;   }
+.navbar-default .navbar-collapse { border-color: #333333;  }
+
+#nav-parent { margin: 0; padding: 0; }
+
 .navbar-default .navbar-toggle .icon-bar { background-color: #000000; }
 
-#collapsable-nav { background-color: #bbbbbb; } 
+#collapsable-nav { background-color: #eee; padding-right: 0; padding-left: 0;} 
 
 .separated { border-bottom: 1px solid #333333; }
 
