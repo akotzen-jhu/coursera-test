@@ -1,0 +1,16 @@
+.message { font-size: 1.3em; font-weight: bold; }
+.lunchDefaultTextColor { color:#000000; border: none; }
+.lunchRedTextColor { 
+	color: #ff0000; 
+	border: 1px solid #ff0000; 
+	padding: .25em; 
+	width: 250px; 
+	text-align: center;
+}
+.lunchGreenTextColor { 
+	color: #229954; 
+	border: 1px solid #229954; 
+	padding: .25em; 
+	width: 250px; 
+	text-align: center; 
+}

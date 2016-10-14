@@ -1,9 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>AngularJs - Assignment 1 - AJ Kotzen</title>
-</head>
-<body>
-	<h1>Hello Coursera!</h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Lunch Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+<body ng-app="LunchCheck">
+   <div class="container" ng-controller="LunchCheckController">
+     <h1>Lunch Checker</h1>
+     <!-- Grader note: empty items, i.e., ", ," are not included in the lunch item count. -->
+     <div class="form-group">
+         <input id="lunch-menu" 
+          ng-model="lunchText"
+          ng-keydown="resetLunchMessage()"
+          type="text"
+          placeholder="list comma separated dishes you usually have for lunch"
+          class="form-control">
+     </div>
+     <div class="form-group">
+         <button ng-click="processLunchText()" 
+          class="btn btn-default">Check If Too Much</button>
+     </div>
+     <div class="form-group message">
+       <p ng-class="lunchMessageColorClass">{{lunchMessage}}</p>
+     </div>
+   </div>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/app.js"></script>
 </body>
 </html>
