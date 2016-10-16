@@ -30,10 +30,6 @@ function ToBuyController(ShoppingListCheckOffService) {
 	toBuyCtrl.hasNothingToBuy = function() {
 		return ShoppingListCheckOffService.getToBuyItems().length === 0;
 	}
-
-	toBuyCtrl.hasNothingBought = function() {
-		return ShoppingListCheckOffService.getBoughtItems().length === 0;
-	}
 }
 
 AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
@@ -41,6 +37,10 @@ function AlreadyBoughtController(ShoppingListCheckOffService) {
 	var boughtCtrl = this;
 
 	boughtCtrl.items = ShoppingListCheckOffService.getBoughtItems();
+
+	boughtCtrl.hasNothingBought = function() {
+		return ShoppingListCheckOffService.getBoughtItems().length === 0;
+	}
 }
 
 function ShoppingListCheckOffService() {
@@ -59,8 +59,6 @@ function ShoppingListCheckOffService() {
 
 	// Already-bought items
 	var boughtItems = [
-		// {'name':'Package of Frozen Green Beans', 'quantity': 2},
-		// {'name':'Package of Frozen Carrots', 'quantity': 2},
 	];
 
 	// --------------------------------
