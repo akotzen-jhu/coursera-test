@@ -10,19 +10,26 @@ ToBuyController.$inject = ['ShoppingListCheckOffService'];
 function ToBuyController(ShoppingListCheckOffService) {
 	var toBuyCtrl = this;
 
-	toBuyCtrl.items = ShoppingListCheckOffService.getToBuyItems();
+	// Set to true to support item removal
+	toBuyCtrl.supportsItemRemoval = false;
 
-	// toBuyCtrl.nothingToBuy = 
-	// toBuyCtrl.nothingBought = ShoppingListCheckOffService.getBoughtItems().length === 0;
+	// Set to true to support item adding
+	toBuyCtrl.supportsItemAdding = false;
+
+	// Set to true to support list count display
+	toBuyCtrl.enableDisplayListCount = false;
+
+	// Properties to support item adding.
+	toBuyCtrl.itemNameToAdd = '';
+	toBuyCtrl.itemQuantityToAdd = 0;
+
+	toBuyCtrl.items = ShoppingListCheckOffService.getToBuyItems();
 
 	toBuyCtrl.removeItem = function(index) {
 		ShoppingListCheckOffService.removeToBuyItem(index);
 	}
 
 	toBuyCtrl.markAsBought = function(index, name, quantity) {
-
-		console.log('markAsBought', index, name, quantity);
-
 		ShoppingListCheckOffService.removeToBuyItem(index);
 		ShoppingListCheckOffService.addBoughtItem(name, quantity);
 	}
@@ -30,11 +37,19 @@ function ToBuyController(ShoppingListCheckOffService) {
 	toBuyCtrl.hasNothingToBuy = function() {
 		return ShoppingListCheckOffService.getToBuyItems().length === 0;
 	}
+
+	toBuyCtrl.addItem = function() {
+		ShoppingListCheckOffService.addToBuyItem(
+			toBuyCtrl.itemNameToAdd, toBuyCtrl.itemQuantityToAdd);
+	}
 }
 
 AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
 function AlreadyBoughtController(ShoppingListCheckOffService) {
 	var boughtCtrl = this;
+
+	// Set to true to support list count display
+	boughtCtrl.enableDisplayListCount = false;
 
 	boughtCtrl.items = ShoppingListCheckOffService.getBoughtItems();
 
@@ -64,13 +79,13 @@ function ShoppingListCheckOffService() {
 	// --------------------------------
 	// Items to buy methods
 	// --------------------------------
-	// service.addToBuyItem = function(name, quantity) {
-	// 	var item = {
-	// 		name: name,
-	// 		quantity: quantity,
-	// 	};
-	// 	toBuyItems.push(item);
-	// };
+	service.addToBuyItem = function(name, quantity) {
+		var item = {
+			name: name,
+			quantity: quantity,
+		};
+		toBuyItems.push(item);
+	};
 
 	service.removeToBuyItem = function(index) {
 		toBuyItems.splice(index, 1);

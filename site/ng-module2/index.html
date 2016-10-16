@@ -11,14 +11,21 @@
       <h1>Shopping List Check Off</h1>
 
       <div class="row">
-
         <!-- To Buy List -->
         <div id="toBuyList" class="col-md-6" ng-controller="ToBuyController as toBuyCtrl">
-         <h2>To Buy:</h2>
+
+         <h2>To Buy<span ng-if="toBuyCtrl.enableDisplayListCount"> ({{toBuyCtrl.items.length}})</span>:</h2>
+
+        <div ng-if="toBuyCtrl.supportsItemAdding" id="itemAdding" ng-if="toBuyCtrl.supportsItemAdding">
+          <p>Add Item:</p>
+          <input type="text" ng-model="toBuyCtrl.itemNameToAdd" placeholder="item name">
+          <input type="number" ng-model="toBuyCtrl.itemQuantityToAdd" placeholder="item quantity">
+          <button ng-click="toBuyCtrl.addItem();" class="btn btn-default">Add</button>
+        </div>
          <ul>
           <li class="toBuyItem" ng-repeat="item in toBuyCtrl.items">
               Buy {{ item.quantity }} {{ item.name }}
-              <!-- <button ng-click="toBuyCtrl.removeItem($index);" class="btn btn-default">Remove</button> -->
+              <button ng-if="toBuyCtrl.supportsItemRemoval" ng-click="toBuyCtrl.removeItem($index);" class="btn btn-default">Remove</button>
               <button ng-click="toBuyCtrl.markAsBought($index, item.name, item.quantity);" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button>
           </li>
          </ul>
@@ -27,7 +34,7 @@
 
         <!-- Already Bought List -->
         <div id="alreadyBoughtList" class="col-md-6" ng-controller="AlreadyBoughtController as boughtCtrl">
-         <h2>Already Bought:</h2>
+         <h2>Already Bought<span ng-if="boughtCtrl.enableDisplayListCount"> ({{boughtCtrl.items.length}})</span>:</h2>
          <ul>
             <li class="boughtItem" ng-repeat="item in boughtCtrl.items">
               Bought {{ item.quantity }} {{ item.name }}

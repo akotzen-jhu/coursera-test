@@ -22,3 +22,13 @@ button > span {
 #toBuyList { }
 
 #alreadyBoughtList { }
+
+#itemAdding { 
+	margin-left: 1em; 
+	margin-bottom: 1em; 
+	border: 1px solid #cccccc; 
+	padding: .5em;
+	width: 30em; }
+#itemAdding input {padding: .25em;}
+#itemAdding input[type="text"] { width: 20em; }
+#itemAdding input[type="number"] { width: 3em; }
