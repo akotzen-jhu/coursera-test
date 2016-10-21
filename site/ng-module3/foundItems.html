@@ -1,4 +1,4 @@
-<div ng-if="foundItems.length > 0">
+<div ng-show="foundItems.length > 0">
   <h4 class="searchResults">{{foundItems.length}} Result(s) displayed.</h4>
   <table class="table table-striped table-bordered">
     <tr>
@@ -18,7 +18,4 @@
       </td>
     </tr>
   </table>
-</div>
-<div ng-if="foundItems.length === 0" class="searchResults">
-  <h4 class="searchError">No more items to remove!</h4>
 </div>
