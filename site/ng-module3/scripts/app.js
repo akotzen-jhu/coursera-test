@@ -46,6 +46,7 @@ function NarrowItDownController(MenuSearchService) {
 
 function FoundItemsDirective() {
   var ddo = {
+  	restrict: 'E',
     templateUrl: 'foundItems.html',
 	scope: {
 		foundItems: '<',
