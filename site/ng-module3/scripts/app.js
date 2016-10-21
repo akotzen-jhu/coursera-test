@@ -11,29 +11,25 @@ function NarrowItDownController(MenuSearchService) {
 
 	var searchCtrl = this;
 	searchCtrl.found = [];
-	searchCtrl.listIsEmpty = false;
 	searchCtrl.searchTerm = '';
+	searchCtrl.listIsEmpty = false;
+	searchCtrl.hasSearched = false;
 
 	var reset = function() {
-		console.log('resetting');
 		searchCtrl.found = [];
 		searchCtrl.listIsEmpty = false;
+		searchCtrl.hasSearched = true;
 	};
 
 	searchCtrl.getMatchedMenuItems = function() {
 
 		reset();
 
-		console.log('getMatchedMenuItems: start');
-
 		// If the search term is empty, don't bother querying the REST service
 		if (!searchCtrl.searchTerm || searchCtrl.length === 0) {
 			searchCtrl.found = [];
 			searchCtrl.listIsEmpty = true;
 			searchCtrl.searchTerm = '';
-
-			console.log('getMatchedMenuItems: empty search term');
-
 			return;
 		}
 
@@ -52,24 +48,21 @@ function NarrowItDownController(MenuSearchService) {
 		if (index < 0) return;
 
 		var itemToRemove = searchCtrl.found[index];
-		console.log('index', index, 'itemToRemove', itemToRemove);
-
 		searchCtrl.found.splice(index, 1);
 	};
 }
 
 function FoundItemsDirective() {
-  var ddo = {
-  	restrict: 'E',
-    templateUrl: 'foundItems.html',
-	scope: {
-		foundItems: '<',
-		onRemove: '&',
-		searchTerm: '<'
-	}
-  };
-
-  return ddo;
+	var ddo = {
+		restrict: 'E',
+		templateUrl: 'foundItems.html',
+		scope: {
+			foundItems: '<',
+			onRemove: '&',
+			searchTerm: '<'
+		}
+	};
+	return ddo;
 }
 
 MenuSearchService.$inject = ['$http'];
@@ -79,8 +72,6 @@ function MenuSearchService($http) {
 
 	service.getMatchedMenuItems = function(searchTerm) {
 
-		console.log('service.getMatchedMenuItems: start, searchTerm =', searchTerm);
-
 		var promise = $http({
 	      method: "GET",
 	      url: endpoint
@@ -88,31 +79,27 @@ function MenuSearchService($http) {
 
 	    return promise.then(function (response) {
 
-	    	console.log('promise.then executing, response =', response);
-
 	    	if (!response || !response.data || !response.data.menu_items) {
 	    		console.log('No response found');
 	    		return [];
 	    	}
 
-	    	var menuItems = response.data.menu_items;
-
 	    	// process result and only keep items that match
+	    	var menuItems = response.data.menu_items;
 	    	var foundItems = [];
 	    	for (var i = 0; i < menuItems.length; i++) {
 	    		if (menuItems[i].description.indexOf(searchTerm) !== -1) {
 	    			foundItems.push(menuItems[i]);
 	    		}
 	    	}
-
       		// return processed items
       		return foundItems;
   		})
   		.catch(function (errorResponse) {
 			console.log('An error occurred', errorResponse.message);
+			return [];
 		});
 	};
-
 }
 
 })();

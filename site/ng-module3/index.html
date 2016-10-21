@@ -24,8 +24,8 @@
       </div>
 
       <!-- Search results -->
-      <div ng-if="!searchCtrl.listIsEmpty" id="searchResults">
-        <found-items 
+      <div ng-if="!searchCtrl.listIsEmpty && searchCtrl.hasSearched" id="searchResults">
+        <found-items
           found-items="searchCtrl.found" 
           on-remove="searchCtrl.removeItem(index)"
           search-term="searchCtrl.searchTerm"></found-items>
@@ -33,7 +33,7 @@
 
       <!-- Display a message when no search results are returned -->
       <div ng-if="searchCtrl.listIsEmpty" id="searchErrorMessage" class="searchResults">
-        <h4>Nothing found</h4>
+        <h4 class="searchError">Nothing found.</h4>
       </div>
 
     </div>
