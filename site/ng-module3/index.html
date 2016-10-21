@@ -27,7 +27,8 @@
       <div ng-if="!searchCtrl.listIsEmpty" id="searchResults">
         <found-items 
           found-items="searchCtrl.found" 
-          on-remove="searchCtrl.removeItem(index)"></found-items>
+          on-remove="searchCtrl.removeItem(index)"
+          search-term="searchCtrl.searchTerm"></found-items>
       </div>
 
       <!-- Display a message when no search results are returned -->

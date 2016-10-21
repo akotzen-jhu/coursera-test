@@ -8,12 +8,21 @@ angular.module('NarrowItDownApp', [])
 
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
+
 	var searchCtrl = this;
 	searchCtrl.found = [];
 	searchCtrl.listIsEmpty = false;
 	searchCtrl.searchTerm = '';
 
+	var reset = function() {
+		console.log('resetting');
+		searchCtrl.found = [];
+		searchCtrl.listIsEmpty = false;
+	};
+
 	searchCtrl.getMatchedMenuItems = function() {
+
+		reset();
 
 		console.log('getMatchedMenuItems: start');
 
@@ -55,7 +64,8 @@ function FoundItemsDirective() {
     templateUrl: 'foundItems.html',
 	scope: {
 		foundItems: '<',
-		onRemove: '&'
+		onRemove: '&',
+		searchTerm: '<'
 	}
   };
 
