@@ -29,9 +29,10 @@
           found-items="searchCtrl.found" 
           on-remove="searchCtrl.removeItem()"></found-items>
       </div>
+
       <!-- Display a message when no search results are returned -->
-      <div id="searchErrorMessage" ng-if="searchCtrl.listIsEmpty">
-        <p>Nothing found</p>
+      <div id="searchErrorMessage" class="pull-left" ng-if="searchCtrl.listIsEmpty">
+        <p> Nothing found</p>
       </div>
 
     </div>

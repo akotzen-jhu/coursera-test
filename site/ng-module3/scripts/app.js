@@ -15,16 +15,24 @@ function NarrowItDownController(MenuSearchService) {
 
 	searchCtrl.getMatchedMenuItems = function() {
 
+		console.log('getMatchedMenuItems: start');
+
 		// If the search term is empty, don't bother querying the REST service
 		if (!searchCtrl.searchTerm || searchCtrl.length === 0) {
 			searchCtrl.found = [];
 			searchCtrl.listIsEmpty = true;
 			searchCtrl.searchTerm = '';
+
+			console.log('getMatchedMenuItems: empty search term');
+
 			return;
 		}
 
 		var promise = MenuSearchService.getMatchedMenuItems(searchCtrl.searchTerm);
 		promise.then(function(data) {
+
+			console.log('back in controller, data = ', data);
+
 			searchCtrl.found = data;
 			if (data.length === 0) {
 				searchCtrl.listIsEmpty = true;
@@ -64,25 +72,31 @@ function MenuSearchService($http) {
 
 	service.getMatchedMenuItems = function(searchTerm) {
 
+		console.log('service.getMatchedMenuItems: start, searchTerm =', searchTerm);
+
 		var promise = $http({
 	      method: "GET",
 	      url: endpoint
 	    });
 
+	    console.log(promise);
+
 	    return promise.then(function (response) {
 
-	    	var data = response.data;
+	    	console.log('promise.then executing, response =', response);
 
-	    	if (!response || !response.data) {
+	    	if (!response || !response.data || !response.data.menu_items) {
 	    		console.log('No response found');
 	    		return [];
 	    	}
 
+	    	var menuItems = response.data.menu_items;
+
 	    	// process result and only keep items that match
 	    	var foundItems = [];
-	    	for (var i = 0; i < data.length; i++) {
-	    		if (data[i].indexOf(searchTerm) !== -1) {
-	    			foundItems.push(data[i]);
+	    	for (var i = 0; i < menuItems.length; i++) {
+	    		if (menuItems[i].description.indexOf(searchTerm) !== -1) {
+	    			foundItems.push(menuItems[i]);
 	    		}
 	    	}
 
