@@ -1,1 +1,19 @@
-<button ng-click="searchCtrl.onRemove({index: $index});">Don't want this one!</button>
+
+<table class="table table-striped table-bordered table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Short Name</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+  <tr ng-repeat="item in foundItems">
+    <td>{{item.name}}</td>
+    <td>{{item.short_name}}</td>
+    <td>{{item.description}}</td>
+    <td>
+    	<button ng-click="onRemove({itemIndex: $index});">Don't want this one!</button>
+    </td>
+  </tr>
+</table>
+
+

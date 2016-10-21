@@ -11,14 +11,29 @@
       <h1>Narrow Down Your Chinese Menu Choice</h1>
 
       <div class="form-group">
-        <input ng-model="searchText" type="text" placeholder="search term" class="form-control">
+        <input 
+          ng-model="searchCtrl.searchTerm" 
+          type="text" 
+          placeholder="search term" 
+          class="form-control">
       </div>
       <div class="form-group narrow-button">
-        <button ng-click="" class="btn btn-primary">Narrow It Down For Me!</button>
+        <button 
+          ng-click="searchCtrl.getMatchedMenuItems()" 
+          class="btn btn-primary">Narrow It Down For Me!</button>
       </div>
 
-      <!-- found-items should be implemented as a component -->
-      <found-items found-items="searchCtrl.found" on-remove="...."></found-items>
+      <!-- Search results -->
+      <div id="searchResults" ng-if="!searchCtrl.listIsEmpty">
+        <found-items 
+          found-items="searchCtrl.found" 
+          on-remove="searchCtrl.removeItem()"></found-items>
+      </div>
+      <!-- Display a message when no search results are returned -->
+      <div id="searchErrorMessage" ng-if="searchCtrl.listIsEmpty">
+        <p>Nothing found</p>
+      </div>
+
     </div>
       <script src="scripts/angular.min.js"></script>
       <script src="scripts/app.js"></script>

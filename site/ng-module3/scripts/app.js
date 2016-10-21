@@ -9,15 +9,34 @@ angular.module('NarrowItDownApp', [])
 NarrowItDownController.$inject = ['MenuSearchService'];
 function ToBuyController(MenuSearchService) {
 	var searchCtrl = this;
-	
 	searchCtrl.found = [];
+	searchCtrl.listIsEmpty = false;
+	searchCtrl.searchTerm = '';
 
-	var promise = MenuSearchService.getMatchedMenuItems();
-	promise.then(function(data)) {
-		searchCtrl.found = data;
-	})
+	searchCtrl.getMatchedMenuItems = function() {
+
+		// If the search term is empty, don't bother querying the REST service
+		if (!searchCtrl.searchTerm || searchCtrl.length === 0) {
+			searchCtrl.found = [];
+			searchCtrl.listIsEmpty = true;
+			searchCtrl.searchTerm = '';
+			return;
+		}
+
+		var promise = MenuSearchService.getMatchedMenuItems(searchCtrl.searchTerm);
+		promise.then(function(data)) {
+			searchCtrl.found = data;
+			if (data.length === 0) {
+				searchCtrl.listIsEmpty = true;
+			}
+		});
+	};
 
 	searchCtrl.removeItem = function (itemIndex) {
+
+		// Ensure we have a valid array index.
+		if (itemIndex < 0) return;
+
 		console.log('itemIndex', itemIndex);
 		var itemToRemove = searchCtrl.found[itemIndex];
 		console.log(itemToRemove);
@@ -28,13 +47,10 @@ function ToBuyController(MenuSearchService) {
 function FoundItemsDirective() {
   var ddo = {
     templateUrl: 'foundItems.html',
-    scope: {
-      foundItems: '<',
-      onRemove: '&'
-    },
-    controller: ShoppingListDirectiveController,
-    controllerAs: 'list',
-    bindToController: true
+	scope: {
+		foundItems: '<',
+		onRemove: '&'
+	}
   };
 
   return ddo;
