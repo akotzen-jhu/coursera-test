@@ -50,3 +50,5 @@ input[type="text"] {
     transform: rotate(360deg);
   }
 }
+
+.searchResults {clear:left; float: left;}

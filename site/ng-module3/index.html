@@ -24,15 +24,15 @@
       </div>
 
       <!-- Search results -->
-      <div id="searchResults" ng-if="!searchCtrl.listIsEmpty">
+      <div ng-if="!searchCtrl.listIsEmpty" id="searchResults">
         <found-items 
           found-items="searchCtrl.found" 
-          on-remove="searchCtrl.removeItem()"></found-items>
+          on-remove="searchCtrl.removeItem(index)"></found-items>
       </div>
 
       <!-- Display a message when no search results are returned -->
-      <div id="searchErrorMessage" class="pull-left" ng-if="searchCtrl.listIsEmpty">
-        <p> Nothing found</p>
+      <div ng-if="searchCtrl.listIsEmpty" id="searchErrorMessage" class="searchResults">
+        <h4>Nothing found</h4>
       </div>
 
     </div>

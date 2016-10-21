@@ -30,9 +30,6 @@ function NarrowItDownController(MenuSearchService) {
 
 		var promise = MenuSearchService.getMatchedMenuItems(searchCtrl.searchTerm);
 		promise.then(function(data) {
-
-			console.log('back in controller, data = ', data);
-
 			searchCtrl.found = data;
 			if (data.length === 0) {
 				searchCtrl.listIsEmpty = true;
@@ -40,15 +37,15 @@ function NarrowItDownController(MenuSearchService) {
 		});
 	};
 
-	searchCtrl.removeItem = function (itemIndex) {
+	searchCtrl.removeItem = function (index) {
 
 		// Ensure we have a valid array index.
-		if (itemIndex < 0) return;
+		if (index < 0) return;
 
-		console.log('itemIndex', itemIndex);
-		var itemToRemove = searchCtrl.found[itemIndex];
-		console.log(itemToRemove);
-		searchCtrl.found.splice(itemIndex, 1);
+		var itemToRemove = searchCtrl.found[index];
+		console.log('index', index, 'itemToRemove', itemToRemove);
+
+		searchCtrl.found.splice(index, 1);
 	};
 }
 
@@ -78,8 +75,6 @@ function MenuSearchService($http) {
 	      method: "GET",
 	      url: endpoint
 	    });
-
-	    console.log(promise);
 
 	    return promise.then(function (response) {
 
