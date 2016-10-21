@@ -7,7 +7,7 @@ angular.module('NarrowItDownApp', [])
 	.directive('foundItems', FoundItemsDirective);
 
 NarrowItDownController.$inject = ['MenuSearchService'];
-function ToBuyController(MenuSearchService) {
+function NarrowItDownController(MenuSearchService) {
 	var searchCtrl = this;
 	searchCtrl.found = [];
 	searchCtrl.listIsEmpty = false;
@@ -24,7 +24,7 @@ function ToBuyController(MenuSearchService) {
 		}
 
 		var promise = MenuSearchService.getMatchedMenuItems(searchCtrl.searchTerm);
-		promise.then(function(data)) {
+		promise.then(function(data) {
 			searchCtrl.found = data;
 			if (data.length === 0) {
 				searchCtrl.listIsEmpty = true;
@@ -87,7 +87,7 @@ function MenuSearchService($http) {
 
       		// return processed items
       		return foundItems;
-  		}
+  		})
   		.catch(function (errorResponse) {
 			console.log('An error occurred', errorResponse.message);
 		});
