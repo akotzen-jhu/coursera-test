@@ -1,9 +1,25 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>AngularJs - Assignment 4 - AJ Kotzen</title>
-</head>
-<body>
-	<h1>Hello Coursera!</h1>
-</body>
+<html ng-app='RoutingApp'>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Angular Assignment 4 - AJ Kotzen</title>
+  </head>
+  <body>
+    <div class="tabs">
+      <a ui-sref="home" ui-sref-active="activeTab">Home</a> 
+      <a ui-sref="categories" ui-sref-active="activeTab">Categories</a>
+    </div>
+
+    <ui-view></ui-view>
+
+    <!-- Libraries -->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+
+    <!-- Modules -->
+    <script src="src/app.js"></script>
+
+  </body>
 </html>

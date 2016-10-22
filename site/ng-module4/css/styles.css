@@ -1,0 +1,20 @@
+body {
+ 	font-size: 1.2em;
+ 	padding: 1em;
+}
+
+div.tabs > a, div.tabs > button {
+	margin-right: 10px;
+	font-size: 1.2em;
+}
+
+div.tabs {
+	margin-bottom: 10px;
+	padding-bottom: .5em;
+	border-bottom: 1px solid #cccccc;
+}
+
+.activeTab {
+	font-weight: bold;
+}
+
