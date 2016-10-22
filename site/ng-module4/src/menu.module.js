@@ -1,8 +1,8 @@
 (function () {
 
-angular.module('RoutingApp',['ui.router']);
+angular.module('MenuApp',['ui.router']);
 
-angular.module('RoutingApp')
+angular.module('MenuApp')
 .config(RoutesConfig);
 
 RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -24,8 +24,8 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
       templateUrl: 'src/categories.html'
     })
 
-    .state('categories.items', {
-      url: '/categories',
+    .state('items', {
+      url: '/items/{itemId}',
       templateUrl: 'src/items.html'
     });
 }
