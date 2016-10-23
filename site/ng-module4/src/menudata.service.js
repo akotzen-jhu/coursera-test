@@ -14,12 +14,26 @@ function MenuDataService($http) {
   };
 
   service.getAllCategories = function() {
-    var promise = $http({ method: "GET", url: endpoints.categories });
+    var promise = $http({ method: "GET", url: endpoints.categories }).
+    then(function(response){
+      if (!response || !response.data) {
+        console.log('No categories found');
+        return [];
+      }
+      return response.data;
+    });
     return promise;
   };
 
   service.getItemsForCategory = function(categoryShortName) {
-    var promise = $http({ method: "GET", url: endpoints.menuItems + categoryShortName });
+    var promise = $http({ method: "GET", url: endpoints.menuItems + categoryShortName }).
+    then(function(response){
+      if (!response || !response.data || !response.data.menu_items) {
+        console.log('No category menu items found');
+        return [];
+      }
+      return response.data.menu_items;
+    });
     return promise;
   };
 }

@@ -1,0 +1,17 @@
+
+<table class="table table-bordered table-striped">
+	<tr>
+		<th>Id</th>
+		<th>Short Name</th>
+		<th>Name</th>
+		<th>Special Instructions</th>
+		<th>URL</th>
+	</tr>
+	<tr ng-repeat="category in $ctrl.categories">
+		<td>{{category.id}}</td>
+		<td><a ui-sref="items({categoryShortName: category.short_name})">{{category.short_name}}</a></td>
+		<td>{{category.name}}</td>
+		<td>{{category.special_instructions}}</td>
+		<td>{{category.url}}</td>
+	</tr>
+</table>
