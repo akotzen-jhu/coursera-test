@@ -32,6 +32,9 @@ function MenuDataService($http) {
         console.log('No category menu items found');
         return [];
       }
+
+      console.log(response.data.menu_items);
+
       return response.data.menu_items;
     });
     return promise;
