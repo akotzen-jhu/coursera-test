@@ -1,0 +1,103 @@
+
+<div id="signup">
+	<h3>Register for our newsletter!</h3>
+	<form name="regForm" novalidate>
+		<!-- First name -->
+		<input 
+			type="text" 
+			name="firstName" 
+			placeholder="First name"
+			ng-model="signupCtrl.registration.account.firstName" 
+			required
+			minlength="1" 
+			ng-maxlength="20">
+		{{ signupCtrl.registration.account.firstName }}
+		<span
+            ng-if="(regForm.firstName.$error.minlength || regForm.firstName.$error.required) && regForm.firstName.$touched">
+            First name must be at least 1 character long
+      	</span>
+		<span 
+			ng-if="regForm.firstName.$error.maxlength && regForm.firstName.$touched">
+			First name must not be longer than 20 characters
+		</span>
+		<br>
+
+		<!-- Last name -->
+		<input 
+			type="text" 
+			name="lastName" 
+			placeholder="Last name"
+			ng-model="signupCtrl.registration.account.lastName" 
+			required
+			minlength="1" 
+			ng-maxlength="20">
+		{{ signupCtrl.registration.account.lastName }}
+		<span
+            ng-if="(regForm.lastName.$error.minlength || regForm.lastName.$error.required) && regForm.lastName.$touched">
+            Last name must be at least 1 character long
+      	</span>
+		<span 
+			ng-if="regForm.lastName.$error.maxlength && regForm.lastName.$touched">
+			Last name must not be longer than 20 characters
+		</span>
+		<br>
+
+		<!-- Email -->
+		<input 
+			type="email" 
+			name="emailAddress" 
+			placeholder="Email address"
+			ng-model="signupCtrl.registration.account.emailAddress"
+			required>
+		{{ signupCtrl.registration.account.emailAddress }}
+		<span 
+			ng-if="regForm.email.$invalid && regForm.email.$touched">
+			Invalid email address
+		</span>
+		<br>
+
+		<!-- Phone -->
+		<input 
+			type="text" 
+			name="phoneNumber" 
+			placeholder="Phone ###-###-####"
+			ng-model="signupCtrl.registration.account.phoneNumber"
+			pattern="(\d{3})-(\d{3})-(\d{4})">
+		{{ signupCtrl.registration.account.phoneNumber }}
+		<span 
+			ng-if="regForm.phoneNumber.$invalid && regForm.phoneNumber.$touched">
+			Phone must be in the format ###-###-####.
+		</span>
+		<br>
+
+		<!-- Menu preference -->
+		<input 
+			type="text" 
+			name="menuItemShortName" 
+			placeholder="Menu item short name"
+			ng-model="signupCtrl.registration.menuItem.shortName"
+			required
+			minlength="1" 
+			ng-maxlength="4">
+		{{ signupCtrl.registration.menuItem.shortName }}
+		<span
+            ng-if="(regForm.menuItemShortName.$error.minlength || regForm.menuItemShortName.$error.required) && regForm.menuItemShortName.$touched">
+            Menu item short name must be at least 1 character long
+      	</span>
+		<span 
+			ng-if="regForm.menuItemShortName.$error.maxlength && regForm.menuItemShortName.$touched">
+			Menu item short name must not be longer than 4 characters
+		</span>
+		<br>
+
+		<!-- Submit button -->
+		<button 
+			ng-disabled="regForm.$invalid"
+			ng-click="signupCtrl.saveRegistration()">Sign Up</button>
+
+		<div class="formDebug">
+		Form valid? {{ regForm.$valid }}
+		</div>
+
+	</form>
+</div>
