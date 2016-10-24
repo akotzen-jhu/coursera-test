@@ -78,7 +78,7 @@
 			ng-model="signupCtrl.registration.menuItem.shortName"
 			required
 			minlength="1" 
-			ng-maxlength="4">
+			ng-maxlength="2">
 		{{ signupCtrl.registration.menuItem.shortName }}
 		<span
             ng-if="(regForm.menuItemShortName.$error.minlength || regForm.menuItemShortName.$error.required) && regForm.menuItemShortName.$touched">
