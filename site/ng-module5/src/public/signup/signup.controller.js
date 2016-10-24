@@ -29,6 +29,7 @@ function SignupController(RegistrationService) {
 
 	signupCtrl.hasValidMenuItem = function() {
 
+		// Ensure the textfield has data in it.
 		var shortName = signupCtrl.registration.menuItem.shortName || '';
 		if (shortName.length === 0) {
 			hasValidMenuItem = false;
@@ -36,15 +37,20 @@ function SignupController(RegistrationService) {
 			return false;
 		}
 
+		// Check if we have already looked up and found a menu item from the server.
+		// If so that menu item has already been cached in the service.
 		if (hasValidMenuItem) return true;
 
+		// We have not looked up the menu item. Look it up using the service.
 		var menuItem = RegistrationService.lookupMenuItem(signupCtrl.registration.menuItem.shortName);
 		if (RegistrationService.hasValidMenuItem()) {
+			RegistrationService.saveRegistration(signupCtrl.registration);
 			foundMenuItem = menuItem;
 			hasValidMenuItem = true;
 			return true;
 		}
 
+		// Default
 		return false;
 	}
 

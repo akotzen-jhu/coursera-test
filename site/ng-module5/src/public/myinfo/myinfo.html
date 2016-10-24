@@ -1,0 +1,25 @@
+
+<div id="myinfo">
+	<div ng-if="myInfoCtrl.hasValidMenuItem">
+		<!-- Account info -->
+		<div id="accountInfo">
+			<h5>Account Info</h5>
+			<p>First name: {{myInfoCtrl.registration.account.firstName}}</p>
+			<p>Last name: {{myInfoCtrl.registration.account.lastName}}</p>
+			<p>Email address: {{myInfoCtrl.registration.account.emailAddress}}</p>
+			<p>Phone number: {{myInfoCtrl.registration.account.phoneNumber}}</p>
+		</div>
+		<!-- Favorite menu item -->
+		<div id="favoriteMenuItem">
+			<h5>Favorite Menu Item</h5>
+			<img ng-src="images/menu/{{myInfoCtrl.menuCategoryShortName}}/{{myInfoCtrl.menuCategoryShortName}}.jpg">
+			<p>Short Name: {{myInfoCtrl.menuItem.short_name}}</p>
+			<p>Title: {{myInfoCtrl.menuItem.name}}</p>
+			<p>Description: {{myInfoCtrl.menuItem.description}}</p>
+		</div>
+	</div>
+
+	<div ng-if="!myInfoCtrl.hasValidMenuItem">
+		<p>Not Signed Up Yet.<a ui-sref="public.signup"> Sign up Now!</a></p>
+	</div>
+</div>

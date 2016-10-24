@@ -6,12 +6,11 @@ angular.module('public')
 
 MyInfoController.$inject = ['RegistrationService'];
 function MyInfoController(RegistrationService) {
-
 	var myInfoCtrl = this;
-
-	myInfoCtrl.getRegistration = function() {
-		myInfoCtrl.registration = RegistrationService.getRegistration();
-	};
+	myInfoCtrl.hasValidMenuItem = RegistrationService.hasValidMenuItem();
+	myInfoCtrl.menuItem = RegistrationService.getMenuItem();
+	myInfoCtrl.menuCategoryShortName = RegistrationService.getMenuCategoryShortName();
+	myInfoCtrl.registration = RegistrationService.getRegistration();
 }
 
 })();
