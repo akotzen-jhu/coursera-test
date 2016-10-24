@@ -99,9 +99,14 @@
 			ng-disabled="regForm.$invalid"
 			ng-click="signupCtrl.saveRegistration()">Sign Up</button>
 
+		<!-- Status message -->
+		<div id="statusMessage">
+			<p>{{signupCtrl.dataSavedMessage}}</p>
+		</div>
+
+		<!-- Debug -->
 		<div class="formDebug">
 		Form valid? {{ regForm.$valid }}
 		</div>
-
 	</form>
 </div>

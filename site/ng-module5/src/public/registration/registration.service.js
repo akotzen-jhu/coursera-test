@@ -4,7 +4,6 @@
 angular.module('public')
 .service('RegistrationService', RegistrationService);
 
-
 RegistrationService.$inject = ['$http'];
 function MenuService($http) {
   var service = this;

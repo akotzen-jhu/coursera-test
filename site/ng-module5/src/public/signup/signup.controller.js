@@ -10,6 +10,10 @@ function SignupController(RegistrationService) {
 	var signupCtrl = this;
 	var hasValidMenuItem = false;
 	var foundMenuItem = {};
+	var successMessage = 'Your information has been saved';
+	var errorMessage = 'There was a problem saving your data';
+
+	signupCtrl.dataSavedMessage = '';
 
 	signupCtrl.registration = {
 		account: {
@@ -32,7 +36,7 @@ function SignupController(RegistrationService) {
 			return false;
 		}
 
-		if (signupCtrl.hasValidMenuItem) return true;
+		if (hasValidMenuItem) return true;
 
 		var menuItem = RegistrationService.lookupMenuItem(signupCtrl.registration.menuItem.shortName);
 		if (RegistrationService.hasValidMenuItem()) {
@@ -46,11 +50,9 @@ function SignupController(RegistrationService) {
 
 	signupCtrl.saveRegistration = function() {
 
-		if ()
-
-
-
-		RegistrationService.saveRegistration(signupCtrl.registration);
+		// We have already looked up the menu item via the signupCtrl.hasValidMenuItem() validation.
+		// So now we just need to set the message to update the UI.
+		signupCtrl.dataSavedMessage = hasValidMenuItem ? successMessage : errorMessage;
 	};
 }
 
