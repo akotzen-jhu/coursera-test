@@ -86,7 +86,11 @@
       	</span>
 		<span 
 			ng-if="regForm.menuItemShortName.$error.maxlength && regForm.menuItemShortName.$touched">
-			Menu item short name must not be longer than 4 characters
+			Menu item short name must not be longer than 2 characters
+		</span>
+		<span 
+			ng-if="regForm.menuItemShortName.$touched && !signupCtrl.hasValidMenuItem()">
+			No such menu number exists
 		</span>
 		<br>
 
