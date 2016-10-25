@@ -32,10 +32,7 @@ function SignupController(RegistrationService) {
 	signupCtrl.validateMenuItem = function() {
 
 		signupCtrl.hasValidMenuItem = false;
-
 		console.log('signupCtrl.validateMenuItem starting');
-
-		console.log('signupCtrl.registration.menuItem.shortName', signupCtrl.registration.menuItem.shortName);
 
 		// Ensure the textfield has data in it.
 		var shortName = signupCtrl.registration.menuItem.shortName || '';

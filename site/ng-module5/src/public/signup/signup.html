@@ -7,7 +7,7 @@
 		<input 
 			type="text" 
 			name="menuItemShortName" 
-			placeholder="Favorite menu item"
+			placeholder="Favorite menu number"
 			ng-model="signupCtrl.registration.menuItem.shortName"
 			ng-blur="signupCtrl.validateMenuItem()"
 			required
@@ -95,11 +95,6 @@
 				{{signupCtrl.dataSavedMessage}}
 				<span ng-if="signupCtrl.enableMyInfoLink"><a ui-sref="public.myinfo"> View Information</a></span>
 			</p>
-		</div>
-
-		<!-- Debug -->
-		<div class="formDebug">
-		Form valid? {{ regForm.$valid }}
 		</div>
 	</form>
 </div>
