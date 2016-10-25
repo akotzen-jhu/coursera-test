@@ -194,5 +194,6 @@ h3.menu-item-title {
 
 .restaurantContent { margin-left: 1em; }
 .restaurantContent button { cursor: pointer; background-color: green; margin-top: .5em; width: 10em; }
+.restaurantContent button[disabled="disabled"] {background-color: gray; color: #ccc;}
 .restaurantContent input[type="text"],
 .restaurantContent input[type="email"] { width: 15em; margin-top: .5em; padding: .25em; color: #000000; }

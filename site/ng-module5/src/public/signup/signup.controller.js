@@ -9,10 +9,11 @@ function SignupController(RegistrationService) {
 
 	var signupCtrl = this;
 	var foundMenuItem = {};
-	var successMessage = 'Your information has been saved';
-	var errorMessage = 'There was a problem saving your information';
+	var successMessage = 'Your information has been saved.';
+	var errorMessage = 'There was a problem saving your information.';
 
 	signupCtrl.dataSavedMessage = '';
+	signupCtrl.enableMyInfoLink = false;
 
 	signupCtrl.registration = {
 		account: {
@@ -66,9 +67,12 @@ function SignupController(RegistrationService) {
 
 	signupCtrl.saveRegistration = function() {
 
+		console.log('saveRegistration');
+
 		// We have already looked up the menu item via the signupCtrl.hasValidMenuItem() validation.
 		// So now we just need to set the message to update the UI.
 		signupCtrl.dataSavedMessage = signupCtrl.hasValidMenuItem ? successMessage : errorMessage;
+		signupCtrl.enableMyInfoLink = signupCtrl.hasValidMenuItem;
 	};
 }
 

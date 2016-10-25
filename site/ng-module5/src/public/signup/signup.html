@@ -11,7 +11,6 @@
 			required
 			minlength="1" 
 			ng-maxlength="20">
-		{{ signupCtrl.registration.account.firstName }}
 		<span
             ng-if="(regForm.firstName.$error.minlength || regForm.firstName.$error.required) && regForm.firstName.$touched">
             First name must be at least 1 character long
@@ -31,7 +30,6 @@
 			required
 			minlength="1" 
 			ng-maxlength="20">
-		{{ signupCtrl.registration.account.lastName }}
 		<span
             ng-if="(regForm.lastName.$error.minlength || regForm.lastName.$error.required) && regForm.lastName.$touched">
             Last name must be at least 1 character long
@@ -49,7 +47,6 @@
 			placeholder="Email address"
 			ng-model="signupCtrl.registration.account.emailAddress"
 			required>
-		{{ signupCtrl.registration.account.emailAddress }}
 		<span 
 			ng-if="regForm.email.$invalid && regForm.email.$touched">
 			Invalid email address
@@ -63,7 +60,6 @@
 			placeholder="Phone ###-###-####"
 			ng-model="signupCtrl.registration.account.phoneNumber"
 			pattern="(\d{3})-(\d{3})-(\d{4})">
-		{{ signupCtrl.registration.account.phoneNumber }}
 		<span 
 			ng-if="regForm.phoneNumber.$invalid && regForm.phoneNumber.$touched">
 			Phone must be in the format ###-###-####.
@@ -80,18 +76,13 @@
 			required
 			minlength="2" 
 			ng-maxlength="4">
-		{{ signupCtrl.registration.menuItem.shortName }}
 		<span
-            ng-if="(regForm.menuItemShortName.$error.minlength || regForm.menuItemShortName.$error.required) && regForm.menuItemShortName.$touched">
-            Menu item short name must be at least 2 characters long
+            ng-if="regForm.menuItemShortName.$touched && ((regForm.menuItemShortName.$error.minlength || regForm.menuItemShortName.$error.required) || (regForm.menuItemShortName.$error.maxlength))  ">
+            Value must be between 2 and 4 characters. 
       	</span>
 		<span 
-			ng-if="regForm.menuItemShortName.$error.maxlength && regForm.menuItemShortName.$touched">
-			Menu item short name must not be longer than 4 characters
-		</span>
-		<span 
 			ng-if="regForm.menuItemShortName.$touched && !signupCtrl.hasValidMenuItem">
-			No such menu number exists
+			No such menu number exists.
 		</span>
 		<br>
 
@@ -102,7 +93,10 @@
 
 		<!-- Status message -->
 		<div id="statusMessage">
-			<p>{{signupCtrl.dataSavedMessage}}</p>
+			<p>
+				{{signupCtrl.dataSavedMessage}}
+				<span ng-if="signupCtrl.enableMyInfoLink"><a ui-sref="public.myinfo"> View Information</a></span>
+			</p>
 		</div>
 
 		<!-- Debug -->
