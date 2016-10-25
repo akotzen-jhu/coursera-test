@@ -11,7 +11,7 @@ function SignupController(RegistrationService) {
 	var hasValidMenuItem = false;
 	var foundMenuItem = {};
 	var successMessage = 'Your information has been saved';
-	var errorMessage = 'There was a problem saving your data';
+	var errorMessage = 'There was a problem saving your information';
 
 	signupCtrl.dataSavedMessage = '';
 
