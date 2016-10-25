@@ -2,9 +2,6 @@ describe('menuItemTests', function () {
 
   var registrationService;
   var $httpBackend;
-  //var ApiBasePath;
-
-  var endpoint = 'https://davids-restaurant.herokuapp.com/menu_items.json?category=A';
 
   beforeEach(function () {
     module('public');
@@ -17,13 +14,16 @@ describe('menuItemTests', function () {
     });
   });
 
+  it('should equal', function() {
+    expect(1).toEqual(1);
+  });
+
   it('should find the menu item (A1) in the result set', function() {
 
-    var response = [
-      {short_name: "A1"},
-      {short_name: "A2"},
-      {short_name: "A3"},
-    ];
+    var endpoint = 'http://akotzen1-menu.herokuapp.com/menu_items/A1.json';
+    var response = {
+      data: { short_name: "A1" }
+    };
 
     $httpBackend.whenGET(endpoint).respond(response);
     registrationService.lookupMenuItem('A1').then(function(response) {
@@ -32,17 +32,16 @@ describe('menuItemTests', function () {
     $httpBackend.flush();
   });
 
-  it('should not find the menu item (A5) in the result set', function() {
+  it('should not find a menu item in the result set', function() {
 
-    var response = [
-      {short_name: "A1"},
-      {short_name: "A2"},
-      {short_name: "A3"},
-    ];
+    var endpoint = 'http://akotzen1-menu.herokuapp.com/menu_items/A99.json';
+    var response = {
+      data: { status: "500", error: "Internal Server Error"}
+    };
 
     $httpBackend.whenGET(endpoint).respond(response);
-    registrationService.lookupMenuItem('A5').then(function(response) {
-      expect(response.data).not.toContain(jasmine.objectContaining({short_name: "A5"}))
+    registrationService.lookupMenuItem('A99').then(function(response) {
+      expect(response.data).not.toContain(jasmine.objectContaining({short_name: "A99"}))
     });
     $httpBackend.flush();
   });
