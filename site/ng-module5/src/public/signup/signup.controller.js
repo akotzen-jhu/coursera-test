@@ -8,7 +8,6 @@ SignupController.$inject = ['RegistrationService'];
 function SignupController(RegistrationService) {
 
 	var signupCtrl = this;
-	var hasValidMenuItem = false;
 	var foundMenuItem = {};
 	var successMessage = 'Your information has been saved';
 	var errorMessage = 'There was a problem saving your information';
@@ -27,38 +26,49 @@ function SignupController(RegistrationService) {
 		}
 	};
 
-	signupCtrl.hasValidMenuItem = function() {
+	signupCtrl.hasValidMenuItem = false;
+
+	signupCtrl.validateMenuItem = function() {
+
+		console.log('signupCtrl.validateMenuItem starting');
 
 		// Ensure the textfield has data in it.
 		var shortName = signupCtrl.registration.menuItem.shortName || '';
+		console.log('shortName', shortName);
+
 		if (shortName.length === 0) {
-			hasValidMenuItem = false;
+			signupCtrl.hasValidMenuItem = false;
 			foundMenuItem = {};
-			return false;
 		}
 
 		// Check if we have already looked up and found a menu item from the server.
 		// If so that menu item has already been cached in the service.
-		if (hasValidMenuItem) return true;
+		if (signupCtrl.hasValidMenuItem) return;
+
+		console.log('looking up menu items');
 
 		// We have not looked up the menu item. Look it up using the service.
-		var menuItem = RegistrationService.lookupMenuItem(signupCtrl.registration.menuItem.shortName);
-		if (RegistrationService.hasValidMenuItem()) {
-			RegistrationService.saveRegistration(signupCtrl.registration);
-			foundMenuItem = menuItem;
-			hasValidMenuItem = true;
-			return true;
-		}
+		var promise = RegistrationService.lookupMenuItem(signupCtrl.registration.menuItem.shortName);
+		promise.then(function(response) {
 
-		// Default
-		return false;
+			console.log('in promise');
+
+			var menuItem = response.data;
+			console.log('menuItem', menuItem);
+
+			if (RegistrationService.hasValidMenuItem === true) {
+				RegistrationService.updateRegistrationData(signupCtrl.registration);
+				foundMenuItem = menuItem;
+				signupCtrl.hasValidMenuItem = true;
+			}
+		});
 	}
 
 	signupCtrl.saveRegistration = function() {
 
 		// We have already looked up the menu item via the signupCtrl.hasValidMenuItem() validation.
 		// So now we just need to set the message to update the UI.
-		signupCtrl.dataSavedMessage = hasValidMenuItem ? successMessage : errorMessage;
+		signupCtrl.dataSavedMessage = signupCtrl.hasValidMenuItem ? successMessage : errorMessage;
 	};
 }
 

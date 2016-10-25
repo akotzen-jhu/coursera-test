@@ -5,7 +5,7 @@ angular.module('public')
 .service('RegistrationService', RegistrationService);
 
 RegistrationService.$inject = ['$http'];
-function MenuService($http) {
+function RegistrationService($http) {
   var service = this;
 
   var endpoint = 'http://akotzen1-menu.herokuapp.com/menu_items/{SHORT_NAME}.json'
@@ -23,54 +23,62 @@ function MenuService($http) {
   var registration = {};
 
   var formatEndpoint = function(shortName) {
+    console.log('formatEndpoint');
     return endpoint.replace('{SHORT_NAME}', shortName);
   };
 
   service.getMenuCategoryShortName = function() {
+    console.log('service.getMenuCategoryShortName');
     return menuCategoryShortName;
   };
 
   service.getMenuItem = function() {
+    console.log('service.getMenuItem');
     return service.menuItem;
   };
 
-  service.hasValidMenuItem = function() {
-    return service.hasValidMenuItem === true;
-  };
-
-  service.saveRegistration = function(registrationData) {
+  service.updateRegistrationData = function(registrationData) {
+    console.log('service.saveRegistration');
     registration = registrationData;
   };
 
   service.getRegistration = function() {
+    console.log('service.getRegistration');
     return registration;
   };
 
   service.lookupMenuItem = function(shortName) {
 
+    console.log('service.lookupMenuItem');
+
     service.hasValidMenuItem = false;
     service.menuItem = {};
     service.registration = {};
 
-    var promise = $http({ method: "GET", url: formatEndpoint(shortName) }).
-    then(function(response) {
+    var menuEndpoint = formatEndpoint(shortName);
+    console.log('menuEndpoint', menuEndpoint);
+
+    var promise = $http({ method: "GET", url: menuEndpoint});
+    promise.then(function(response) {
+
+      console.log('service.lookupMenuItem', promise);
+
       // Check for an empty response or a 500 error.
       if (!response || !response.data || (response.data.status && response.data.status === "500")) {
         console.log('No category menu items found');
         return [];
       }
 
-      var menuItems = response.data;
-
-      for (var i = 0; i < menuItems.length; i++) {
-        if (menuItems[i].short_name == shortName) {
-          service.hasValidMenuItem = true;
-          service.menuItem = menuItems[i];
-          service.menuCategoryShortName = menuItems[i].category_short_name;
-          return menuItems[i];
-        }
+      if (response.data.short_name !== shortName) {
+        console.log('No category menu items found (short names did not match)');
+        return [];
       }
-      return [];
+
+      console.log('Found a menu item', shortName, response.data);
+      service.hasValidMenuItem = true;
+      service.menuItem = response.data;
+      service.menuCategoryShortName = response.data.category_short_name;
+      return response.data;
     });
     return promise;
   };
