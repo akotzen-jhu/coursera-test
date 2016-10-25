@@ -18,7 +18,7 @@ describe('registrationService', function () {
 
   it('should find menu item (A1) in the response', function() {
 
-    var endpoint = 'http://akotzen1-menu.herokuapp.com/menu_items/A1.json';
+    var endpoint = 'https://akotzen1-menu.herokuapp.com/menu_items/A1.json';
     var mockResponse = { 
       id: 1, 
       short_name: "A1", 
@@ -36,7 +36,7 @@ describe('registrationService', function () {
 
   it('should generate internal server error for invalid menu item (A99)', function() {
 
-    var endpoint = 'http://akotzen1-menu.herokuapp.com/menu_items/A99.json';
+    var endpoint = 'https://akotzen1-menu.herokuapp.com/menu_items/A99.json';
     var mockResponse = { status: "500", error: "Internal Server Error" };
 
     $httpBackend.whenGET(endpoint).respond(mockResponse);
