@@ -7,30 +7,19 @@ angular.module('public')
 RegistrationService.$inject = ['$http'];
 function RegistrationService($http) {
   var service = this;
-
   var endpoint = 'http://akotzen1-menu.herokuapp.com/menu_items/{SHORT_NAME}.json'
-  //var endpoint = 'https://davids-restaurant.herokuapp.com/menu_items.json?category=';
-  
   var hasValidMenuItem = false;
-
-  // The cached menu item.
-  var menuItem = {};
-
-  // The cached abbreviation (Example: "A" instead of "A1")
-  var menuCategoryShortName = '';
 
   var formatEndpoint = function(shortName) {
     console.log('formatEndpoint');
     return endpoint.replace('{SHORT_NAME}', shortName);
   };
 
+  // The cached menu item.
+  service.menuItem = {};
+
   // The cached user registration.
   service.registration = {};
-
-  service.getMenuCategoryShortName = function() {
-    console.log('service.getMenuCategoryShortName');
-    return menuCategoryShortName;
-  };
 
   service.getMenuItem = function() {
     console.log('service.getMenuItem');

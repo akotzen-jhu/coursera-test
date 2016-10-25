@@ -12,8 +12,7 @@
 		<!-- Favorite menu item -->
 		<div id="favoriteMenuItem">
 			<h3>Favorite Menu Item</h3>
-			<img ng-src="images/menu/{{myInfoCtrl.menuCategoryShortName}}/{{myInfoCtrl.menuCategoryShortName}}.jpg">
-			<p>Img debug: images/menu/{{myInfoCtrl.menuItem.short_name}}/{{myInfoCtrl.menuCategoryShortName}}.jpg</p>
+			<img ng-src='{{myInfoCtrl.menuImagePath}}'>
 			<p>Short Name: {{myInfoCtrl.menuItem.short_name}}</p>
 			<p>Title: {{myInfoCtrl.menuItem.name}}</p>
 			<p>Description: {{myInfoCtrl.menuItem.description}}</p>

@@ -184,6 +184,7 @@ h3.menu-item-title {
   }
 }
 
+/* Assignment 5 styles */
 
 .formDebug {
   margin-top: 10px;
@@ -197,3 +198,5 @@ h3.menu-item-title {
 .restaurantContent button[disabled="disabled"] {background-color: gray; color: #ccc;}
 .restaurantContent input[type="text"],
 .restaurantContent input[type="email"] { width: 15em; margin-top: .5em; padding: .25em; color: #000000; }
+
+#statusMessage {margin-top: 1em;}

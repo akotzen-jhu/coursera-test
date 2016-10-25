@@ -2,6 +2,23 @@
 <div id="signup" class="restaurantContent">
 	<h3>Register for our newsletter!</h3>
 	<form name="regForm" novalidate>
+
+		<!-- Menu preference -->
+		<input 
+			type="text" 
+			name="menuItemShortName" 
+			placeholder="Favorite menu item"
+			ng-model="signupCtrl.registration.menuItem.shortName"
+			ng-blur="signupCtrl.validateMenuItem()"
+			required
+			minlength="2" 
+			ng-maxlength="4">
+		<span
+            ng-if="regForm.menuItemShortName.$touched && ((regForm.menuItemShortName.$error.minlength || regForm.menuItemShortName.$error.required) || regForm.menuItemShortName.$error.maxlength || !signupCtrl.hasValidMenuItem)  ">
+            No such menu number exists. 
+      	</span>
+		<br>
+
 		<!-- First name -->
 		<input 
 			type="text" 
@@ -48,7 +65,7 @@
 			ng-model="signupCtrl.registration.account.emailAddress"
 			required>
 		<span 
-			ng-if="regForm.email.$invalid && regForm.email.$touched">
+			ng-if="regForm.emailAddress.$touched && (regForm.emailAddress.$invalid || regForm.emailAddress.$error.required)">
 			Invalid email address
 		</span>
 		<br>
@@ -59,30 +76,11 @@
 			name="phoneNumber" 
 			placeholder="Phone ###-###-####"
 			ng-model="signupCtrl.registration.account.phoneNumber"
-			pattern="(\d{3})-(\d{3})-(\d{4})">
+			pattern="(\d{3})-(\d{3})-(\d{4})"
+			required>
 		<span 
 			ng-if="regForm.phoneNumber.$invalid && regForm.phoneNumber.$touched">
 			Phone must be in the format ###-###-####.
-		</span>
-		<br>
-
-		<!-- Menu preference -->
-		<input 
-			ng-blur="signupCtrl.validateMenuItem()"
-			type="text" 
-			name="menuItemShortName" 
-			placeholder="Menu item short name"
-			ng-model="signupCtrl.registration.menuItem.shortName"
-			required
-			minlength="2" 
-			ng-maxlength="4">
-		<span
-            ng-if="regForm.menuItemShortName.$touched && ((regForm.menuItemShortName.$error.minlength || regForm.menuItemShortName.$error.required) || (regForm.menuItemShortName.$error.maxlength))  ">
-            Value must be between 2 and 4 characters. 
-      	</span>
-		<span 
-			ng-if="regForm.menuItemShortName.$touched && !signupCtrl.hasValidMenuItem">
-			No such menu number exists.
 		</span>
 		<br>
 

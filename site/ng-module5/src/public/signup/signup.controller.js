@@ -31,7 +31,11 @@ function SignupController(RegistrationService) {
 
 	signupCtrl.validateMenuItem = function() {
 
+		signupCtrl.hasValidMenuItem = false;
+
 		console.log('signupCtrl.validateMenuItem starting');
+
+		console.log('signupCtrl.registration.menuItem.shortName', signupCtrl.registration.menuItem.shortName);
 
 		// Ensure the textfield has data in it.
 		var shortName = signupCtrl.registration.menuItem.shortName || '';
@@ -40,11 +44,8 @@ function SignupController(RegistrationService) {
 		if (shortName.length === 0) {
 			signupCtrl.hasValidMenuItem = false;
 			foundMenuItem = {};
+			return;
 		}
-
-		// Check if we have already looked up and found a menu item from the server.
-		// If so that menu item has already been cached in the service.
-		if (signupCtrl.hasValidMenuItem) return;
 
 		console.log('looking up menu items');
 
