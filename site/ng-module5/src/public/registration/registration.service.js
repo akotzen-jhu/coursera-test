@@ -19,13 +19,13 @@ function RegistrationService($http) {
   // The cached abbreviation (Example: "A" instead of "A1")
   var menuCategoryShortName = '';
 
-  // The cached user registration.
-  var registration = {};
-
   var formatEndpoint = function(shortName) {
     console.log('formatEndpoint');
     return endpoint.replace('{SHORT_NAME}', shortName);
   };
+
+  // The cached user registration.
+  service.registration = {};
 
   service.getMenuCategoryShortName = function() {
     console.log('service.getMenuCategoryShortName');
@@ -39,12 +39,12 @@ function RegistrationService($http) {
 
   service.updateRegistrationData = function(registrationData) {
     console.log('service.saveRegistration');
-    registration = registrationData;
+    service.registration = registrationData;
   };
 
   service.getRegistration = function() {
     console.log('service.getRegistration');
-    return registration;
+    return service.registration;
   };
 
   service.lookupMenuItem = function(shortName) {

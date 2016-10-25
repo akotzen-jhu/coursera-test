@@ -7,7 +7,7 @@ angular.module('public')
 MyInfoController.$inject = ['RegistrationService'];
 function MyInfoController(RegistrationService) {
 	var myInfoCtrl = this;
-	myInfoCtrl.hasValidMenuItem = RegistrationService.hasValidMenuItem();
+	myInfoCtrl.hasValidMenuItem = RegistrationService.hasValidMenuItem === true;
 	myInfoCtrl.menuItem = RegistrationService.getMenuItem();
 	myInfoCtrl.menuCategoryShortName = RegistrationService.getMenuCategoryShortName();
 	myInfoCtrl.registration = RegistrationService.getRegistration();
