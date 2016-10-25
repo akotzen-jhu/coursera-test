@@ -7,7 +7,7 @@ angular.module('public')
 RegistrationService.$inject = ['$http'];
 function RegistrationService($http) {
   var service = this;
-  var endpoint = 'http://akotzen1-menu.herokuapp.com/menu_items/{SHORT_NAME}.json'
+  var endpoint = 'https://akotzen1-menu.herokuapp.com/menu_items/{SHORT_NAME}.json'
   var hasValidMenuItem = false;
 
   var formatEndpoint = function(shortName) {
